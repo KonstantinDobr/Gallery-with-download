@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <center>
+        <h1>Пейзажи Марса</h1>
+        <div class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="-1" class="active" aria-current="true" aria-label="Slide 1"></button>
+                {% for item in range(length) %}
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={{ loop.index }}></button>
+                {% endfor %}
+            </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="5000">
+                        <img src="static/img/photo1.jpg" class="d-block w-70" alt="здесь должна была быть картинка, но не нашлась">
+                    </div>
+            {% for user in photos %}
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src={{ user }} class="d-block w-70" alt="здесь должна была быть картинка, но не нашлась">
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div id="photoform">
+            <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="photo">Добавить картинку</label><br/>
+                <input type="file" class="form-control-file" id="photo" name="file">
+            </div><br/>
+            <button type="submit" class="btn btn-primary">Отправить</button>
+            </form>
+        </div>
+    </center>
+{% endblock %}
